@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+set -e
+
+COMMAND=$1
+shift
+
+case "$COMMAND" in
+
+  'scrape-people')
+    set -x
+    exec scrapy crawl people -t jsonlines -o - > out/people.json
+    ;;
+
+  *)
+    echo "Unknown command $COMMAND"
+    exit 1
+    ;;
+
+esac
